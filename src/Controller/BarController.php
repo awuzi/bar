@@ -29,15 +29,12 @@ class BarController extends AbstractController
 
 
     /**
-     * @Route("/bar", name="bar")
+     * @Route("/home", name="home")
      */
     public function index(): Response
     {
-        $beers = $this->beersApi();
-
-        return $this->render('bar/index.html.twig', [
+        return $this->render('home/home.html.twig', [
             'title' => 'Home',
-            'beers' => $beers['beers'],
         ]);
     }
 
@@ -48,6 +45,17 @@ class BarController extends AbstractController
     {
         return $this->render('mentions/mentions.html.twig', [
             'info' => 'mentions',
+        ]);
+    }
+
+
+    /**
+     * @Route("/beers", name="beers")
+     */
+    public function beers(): Response
+    {
+        return $this->render('beers/beers.html.twig', [
+            'beers' => $this->beersApi()['beers']
         ]);
     }
 
