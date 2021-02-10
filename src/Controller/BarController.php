@@ -17,4 +17,14 @@ class BarController extends AbstractController
             'controller_name' => 'ZEZEZEZEZ',
         ]);
     }
+
+    /**
+     * @Route("/mentions", name="mentions")
+     */
+    public function mentions(): Response
+    {
+        return $this->render('mentions/mentions.html.twig', [
+            'info' => 'mentions',
+        ]);
+    }
 }
