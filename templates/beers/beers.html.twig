@@ -3,16 +3,16 @@
 {% block title %}Hello BarController!{% endblock %}
 
 {% block body %}
-    <div class="container">
-        {% for beer in beers %}
-            <div class="mt-4">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ beer.name }}</h5>
-                        <p class="card-text">{{ beer.degree }}</p>
-                    </div>
+
+    {% for beer in beers %}
+        <div class="mt-4">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ beer.name }}</h5>
+                    <p class="card-text">{{ beer.degree }}</p>
                 </div>
             </div>
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
+
 {% endblock %}
