@@ -12,7 +12,6 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class BarController extends AbstractController
 {
 
-
     /**
      * @var HttpClientInterface
      */
@@ -30,7 +29,7 @@ class BarController extends AbstractController
     public function index(): Response
     {
         return $this->render('home/home.html.twig', [
-            'title' => 'Home',
+            'title' => 'Accueil',
         ]);
     }
 
@@ -40,7 +39,7 @@ class BarController extends AbstractController
     public function mentions(): Response
     {
         return $this->render('mentions/mentions.html.twig', [
-            'info' => 'mentions',
+            'info' => 'mentions légales',
         ]);
     }
 

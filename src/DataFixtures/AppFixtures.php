@@ -3,8 +3,9 @@
 namespace App\DataFixtures;
 
 use App\Entity\Beer;
-use Doctrine\Persistence\ObjectManager;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
@@ -12,10 +13,10 @@ class AppFixtures extends Fixture
     {
 
         $names = [
-            "beer 1",
-            "beer 2",
-            "beer 3",
-            "beer 4",
+            'beer 1',
+            'beer 2',
+            'beer 3',
+            'beer 4',
             'beer 5',
             'beer 6',
             'beer 7',
@@ -30,7 +31,7 @@ class AppFixtures extends Fixture
             $beer->setDescription($this->lorem(20));
             $beer->setPrice(mt_rand(20, 200));
             $beer->setDegree(mt_rand(1, 15));
-            $beer->setPublishedAt(new \DateTime());
+            $beer->setPublishedAt(new DateTime());
             $manager->persist($beer);
         }
 
