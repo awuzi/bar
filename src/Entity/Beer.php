@@ -44,6 +44,16 @@ class Beer
      */
     private $categories;
 
+    /**
+     * @ORM\Column(type="decimal", precision=5, scale=2)
+     */
+    private $price;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $degree;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -122,6 +132,30 @@ class Beer
     public function removeCategory(Category $category): self
     {
         $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    public function getPrice(): ?string
+    {
+        return $this->price;
+    }
+
+    public function setPrice(string $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getDegree(): ?int
+    {
+        return $this->degree;
+    }
+
+    public function setDegree(?int $degree): self
+    {
+        $this->degree = $degree;
 
         return $this;
     }

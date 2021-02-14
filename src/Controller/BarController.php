@@ -88,6 +88,18 @@ class BarController extends AbstractController
         //return new Response('Saved with id '.$beer->getId() .' et la categorie :'. $category->getId());
     }
 
+    /**
+     * @Route("/repo", name="repo")
+     */
+    public function testRepo()
+    {
+        $em = $this->getDoctrine()->getManager()->getRepository(Category::class);
+
+
+        dd($em->findByName('categori1'));
+
+    }
+
 
     private function beersApi(): array
     {
