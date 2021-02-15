@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Beer;
 use App\Entity\Category;
+use App\Entity\Country;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,8 +29,13 @@ class BarController extends AbstractController
      */
     public function index(): Response
     {
+        $beerRepo = $this->getDoctrine()->getRepository(Beer::class);
+
+        $beers = $beerRepo->fetchByLimit(3);
+
         return $this->render('home/home.html.twig', [
             'title' => 'Accueil',
+            'beers' => $beers,
         ]);
     }
 
@@ -57,6 +63,44 @@ class BarController extends AbstractController
             'beers' => $beers,
         ]);
     }
+
+    /**
+     * @Route("/beer/{id}", name="beer")
+     * @param int $id
+     * @return Response
+     */
+    public function show(int $id): Response
+    {
+        $beerRepo = $this->getDoctrine()->getRepository(Beer::class);
+
+        $beer = $beerRepo->find($id);
+
+        return $this->render('beer/beer.html.twig', [
+            'beer' => $beer,
+        ]);
+    }
+
+
+    /**
+     * @Route("/country/{id}", name="country")
+     * @param int $id
+     * @return Response
+     */
+    public function country(int $id): Response
+    {
+        $beerRepo = $this
+            ->getDoctrine()
+            ->getRepository(Beer::class);
+
+        $beerInCountry = $beerRepo->findBy([
+            'country' => $id,
+        ]);
+
+        return $this->render('country/country.html.twig', [
+            'beersInCountry' => $beerInCountry,
+        ]);
+    }
+
 
     /**
      * @Route("/newbeer", name="create_beer")

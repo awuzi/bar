@@ -25,7 +25,7 @@ class Beer
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
@@ -45,12 +45,12 @@ class Beer
     private $categories;
 
     /**
-     * @ORM\Column(type="decimal", precision=5, scale=2)
+     * @ORM\Column(type="decimal", precision=5, scale=2, nullable=true)
      */
     private $price;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="decimal", precision=5, scale=2)
      */
     private $degree;
 
@@ -141,22 +141,23 @@ class Beer
         return $this->price;
     }
 
-    public function setPrice(string $price): self
+    public function setPrice(?string $price): self
     {
         $this->price = $price;
 
         return $this;
     }
 
-    public function getDegree(): ?int
+    public function getDegree(): ?string
     {
         return $this->degree;
     }
 
-    public function setDegree(?int $degree): self
+    public function setDegree(string $degree): self
     {
         $this->degree = $degree;
 
         return $this;
     }
+
 }

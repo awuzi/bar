@@ -20,12 +20,12 @@ class Category
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=100)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
@@ -34,9 +34,15 @@ class Category
      */
     private $beers;
 
+    /**
+     * @ORM\Column(type="string", length=100, options={"default": "normal"})
+     */
+    private $term;
+
     public function __construct()
     {
         $this->beers = new ArrayCollection();
+        $this->setTerm('normal'); // valeur par défaut
     }
 
     public function getId(): ?int
@@ -80,7 +86,7 @@ class Category
     {
         if (!$this->beers->contains($beer)) {
             $this->beers[] = $beer;
-            $beer->addCategory($this);
+            $beer->addCategory($this); // table de relation ManyToMany
         }
 
         return $this;
@@ -91,6 +97,18 @@ class Category
         if ($this->beers->removeElement($beer)) {
             $beer->removeCategory($this);
         }
+
+        return $this;
+    }
+
+    public function getTerm(): ?string
+    {
+        return $this->term;
+    }
+
+    public function setTerm(string $term): self
+    {
+        $this->term = $term;
 
         return $this;
     }
