@@ -97,11 +97,15 @@ class BarController extends AbstractController
         $beerRepo = $this
             ->getDoctrine()
             ->getRepository(Beer::class);
+        $countryRepo = $this->getDoctrine()->getRepository(Country::class);
 
         $beerInCountry = $beerRepo->findBy(['country' => $id]);
+        $country = $countryRepo->find($id);
+
 
         return $this->render('country/country.html.twig', [
             'beersInCountry' => $beerInCountry,
+            'country' => $country
         ]);
     }
 
@@ -113,24 +117,26 @@ class BarController extends AbstractController
      */
     public function category(int $id): Response
     {
-        $beerRepo = $this->getDoctrine()->getRepository(Category::class);
+        $beerRepo = $this->getDoctrine()->getRepository(Beer::class);
+        $categoryRepo = $this->getDoctrine()->getRepository(Category::class);
 
-
-        return $this->render('country/country.html.twig', [
-     
+        $beersInCategory = $beerRepo->findByCategoryId($id);
+        $category = $categoryRepo->find($id);
+        return $this->render('category/category.html.twig', [
+            'beersInCategory' => $beersInCategory,
+            'category' => $category
         ]);
     }
 
 
 
-    public function mainMenu(string $category_id, string $routeName): Response
+    public function mainMenu(): Response
     {
         $categoryRepo = $this
             ->getDoctrine()
             ->getRepository(Category::class);
 
         $categories = $categoryRepo->findBy(['term' => 'normal']);
-      /*  $categories = $categoryRepo->findAll();*/
 
 
         return $this->render('partials/menu.html.twig', [

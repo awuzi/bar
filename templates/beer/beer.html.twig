@@ -4,19 +4,21 @@
 
 {% block body %}
 
-    <h3>Beer : {{ beer.name }}</h3>
-    <p>description : {{ beer.description }}</p>
-    <p>price : {{ beer.price }}</p>
-    <p>degree : {{ beer.degree }}</p>
+  <h3>Name : {{ beer.name }}</h3>
+  <p>Description : {{ beer.description ?? 'N/C' }}</p>
+  <p>Price : {{ beer.price ?? 'N/C' }} €</p>
+  <p>Degree : {{ beer.degree ?? 'N/C' }}°C</p>
 
-    <p>Country :
-    {% if beer.country and beer.country.id %}
-        <a href="{{ path('country', {id: beer.country.id}) }}">{{ beer.country.name }}</a></p>
-    {% endif %}
-    <p>Category :</p>
-    <ul>
-        {% for c in beer.categories %}
-            <li>{{ c.name }} - {{ c.term }}</li>
-        {% endfor %}
-    </ul>
+  <p>Country :
+  {% if beer.country and beer.country.id %}
+    <a href="{{ path('country', {id: beer.country.id}) }}">{{ beer.country.name | title }}</a></p>
+  {% else %}
+    <p>no country</p>
+  {% endif %}
+  <p>Category :</p>
+  <ul>
+    {% for c in beer.categories %}
+      <li><a href="{{ path('category', {id: c.id}) }}">{{ c.name | title }}</a> - {{ c.term }}</li>
+    {% endfor %}
+  </ul>
 {% endblock %}

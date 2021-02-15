@@ -49,4 +49,15 @@ class BeerRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+
+    public function findByCategoryId(int $id): array
+    {
+        return $this->createQueryBuilder('beer')
+            ->join('beer.categories', 'category')
+            ->andWhere('category.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
 }

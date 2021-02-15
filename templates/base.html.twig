@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
-    {% endblock %}
-    {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
-    {% endblock %}
+  <meta charset="UTF-8">
+  <title>{% block title %}Welcome!{% endblock %}</title>
+  {% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+  {% endblock %}
+  {% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+  {% endblock %}
 </head>
 <body>
-{{ render(controller('App\\Controller\\BarController:mainMenu', {'routeName' : app.request.attributes.get('_route'),'category_id' : app.request.attributes.get('id') ?? ''})) }}
+{{ render(controller('App\\Controller\\BarController:mainMenu', {
+  'routeName' : app.request.attributes.get('_route'),
+  'category_id' : app.request.attributes.get('id') ?? ''
+})) }}
 <div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            Sidebar
-        </div>
-        <div class="col-md-8">
-            {% block body %}{% endblock %}
-        </div>
+  <div class="row">
+    <div class="col-md-2">
+      -Sidebar-
     </div>
+    <div class="col-md-8">
+      {% block body %}{% endblock %}
+    </div>
+  </div>
 </div>
 </body>
 </html>
