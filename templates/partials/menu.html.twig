@@ -9,9 +9,9 @@
             <li class="nav-item">
                 <a class="nav-link {{ route_name == 'home' ? 'active' }}" href="{{ path('home') }}">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ route_name == 'beers' ? 'active' }}" href="{{ path('beers') }}">Beer Belgium</a>
-            </li>
+            {% for c in categories %}
+                <a class="nav-link {{ route_name == c.name ? 'active' }}" href="{{ path('category', {id: c.id}) }}">{{ c.name | title }}</a>
+            {% endfor %}
             <li class="nav-item">
                 <a class="nav-link {{ route_name == 'mentions' ? 'active' }}" href="{{ path('mentions') }}">Mentions</a>
             </li>

@@ -4,8 +4,22 @@
 
 {% block body %}
 
-  {% for beer in beersInCountry %}
-    <p>{{ beer.name }}</p>
-  {% endfor %}
+    <h2>Les bières pour le pays : {{ country.name | title }}</h2>
+    {% for beer in beersInCountry %}
+        <div class="mt-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ beer.name | capitalize }} - {{ beer.degree }}°C
+                        <span class="float-right badge rounded-pill bg-info text-dark">{{ beer.price | format_currency('EUR', locale='fr') }}</span>
+                    </h5>
+                    {% for c in beer.categories %}
+                        <p class="card-text"><em>{{ c.name }}</em></p>
+                    {% endfor %}
+                    <p class="card-text">{{ beer.description }}</p>
+                </div>
+                <span class="card-footer">Le : {{ beer.publishedAt | date('d/m/Y') }}</span>
+            </div>
+        </div>
+    {% endfor %}
 
 {% endblock %}

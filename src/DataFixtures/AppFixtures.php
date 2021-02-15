@@ -87,6 +87,7 @@ class AppFixtures extends Fixture
 
 
                 $beer->addCategory($categories[random_int(0, count($categories) - 1)]);
+                $beer->addCategory($categories[random_int(0, count($categories) - 1)]);
                 // ajout d'un country
                 $beer->setCountry($country);
 
