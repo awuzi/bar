@@ -72,23 +72,24 @@ class AppFixtures extends Fixture
             'beer very simple',
         ];
 
-        // generate 20 beers
-        // mettre une description & une date associées à vos bières
-
         $count = 0;
         $repoCountry = $manager->getRepository(Country::class);
+        $repoCategory = $manager->getRepository(Category::class);
+        $categories = $repoCategory->findAll();
         while ($count < 30) {
             $beer = new Beer();
             // associer un pays une fois sur deux à une bière
-            if (rand(1, 2) === 1) {
+
                 $name = $countries[rand(0, count($countries) - 1)];
                 $country = $repoCountry->findOneBy([
                     'name' => $name,
                 ]);
-                $beer->addCategory($category);
+
+
+                $beer->addCategory($categories[random_int(0, count($categories) - 1)]);
                 // ajout d'un country
                 $beer->setCountry($country);
-            }
+
 
             $beer->setName($names[random_int(0, count($names) - 1)]);
             $beer->setDescription($this->lorem(random_int(5, 20)));
@@ -97,9 +98,9 @@ class AppFixtures extends Fixture
             $day = random_int(10, 1000);
             $date->add(new \DateInterval("P".$day."D"));
 
-            if (rand(1, 3) === 1) {
-                $beer->setPrice(rand(40, 200) / 10);
-            }
+
+            $beer->setPrice(rand(40, 200) / 10);
+
 
             $beer->setDegree(rand(40, 90) / 10);
             $beer->setPublishedAt($date);
