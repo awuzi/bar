@@ -85,6 +85,7 @@ class AppFixtures extends Fixture
                 $country = $repoCountry->findOneBy([
                     'name' => $name,
                 ]);
+                $beer->addCategory($category);
                 // ajout d'un country
                 $beer->setCountry($country);
             }

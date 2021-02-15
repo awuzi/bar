@@ -55,7 +55,10 @@ class BarController extends AbstractController
      */
     public function beers(): Response
     {
-        $em = $this->getDoctrine()->getManager()->getRepository(Beer::class);
+        $em = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository(Beer::class);
 
         $beers = $em->findAll();
 
@@ -71,9 +74,11 @@ class BarController extends AbstractController
      */
     public function show(int $id): Response
     {
-        $beerRepo = $this->getDoctrine()->getRepository(Beer::class);
+        $beerRepo = $this
+            ->getDoctrine()
+            ->getRepository(Beer::class);
 
-        $beer = $beerRepo->find($id);
+        $beer = $beerRepo->findByTerm($id, "special");
 
         return $this->render('beer/beer.html.twig', [
             'beer' => $beer,
@@ -92,9 +97,7 @@ class BarController extends AbstractController
             ->getDoctrine()
             ->getRepository(Beer::class);
 
-        $beerInCountry = $beerRepo->findBy([
-            'country' => $id,
-        ]);
+        $beerInCountry = $beerRepo->findBy(['country' => $id]);
 
         return $this->render('country/country.html.twig', [
             'beersInCountry' => $beerInCountry,

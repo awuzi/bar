@@ -36,15 +36,17 @@ class BeerRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-    /*
-    public function findOneBySomeField($value): ?Beer
+
+    public function findByTerm(int $id, string $term): ?Beer
     {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
+        return $this->createQueryBuilder('beer')
+            ->join('beer.categories', 'category')
+            ->where('beer.id = :id')
+            ->setParameter('id', $id)
+            ->andWhere('category.term = :term')
+            ->setParameter('term', $term)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getOneOrNullResult();
     }
-    */
+
 }
