@@ -1,12 +1,22 @@
 <div class="mt-4">
   <div class="card">
-    <div class="card-body">
-      <h5 class="card-title"><a href="{{ path('beer', { 'id' : beer.id }) }}">{{ beer.name | capitalize }}</a> - {{ beer.degree }}°C
-        <span class="float-right badge rounded-pill bg-info text-dark">{{ beer.price | format_currency('EUR', locale='fr') }}</span>
-      </h5>
-      Category : {% for c in beer.categories %}<span class="card-text"><b>{{ c.name }}</b></span>{% endfor %}
-      <p class="card-text">Description : {{ beer.description }}</p>
+    <div class="h5 card-header align-content-center justify-content-center flex">
+      <a href="{{ path('beer', { 'id' : beer.id }) }}">{{ beer.name | capitalize }}</a>
+      <span class="float-right badge rounded-pill bg-info text-dark">{{ beer.price | format_currency('EUR', locale='fr') }}</span>
     </div>
-    <span class="card-footer">Release on : {{ beer.publishedAt| date('d/m/Y') }}</span>
+    <div class="card-body">
+      <p class="card-text">
+        Degree : {{ beer.degree }}°C
+      </p>
+      <p class="card-text">
+        Category : {% for c in beer.categories %}<em>{{ c.name }}{% if not loop.last %} - {% endif %}</em>{% endfor %}
+      </p>
+      <p class="card-text">
+        Description : {{ beer.description }}
+      </p>
+    </div>
+    <div class="card-footer">
+      <span class="float-right small">Release on : {{ beer.publishedAt| date('d/m/Y') }}</span>
+    </div>
   </div>
 </div>

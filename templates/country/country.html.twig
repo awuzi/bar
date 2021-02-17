@@ -6,7 +6,7 @@
 
     <h2>Les bières pour le pays : {{ country.name | title }}</h2>
     {% for beer in beersInCountry %}
-        {% include '/partials/_beer_card.html.twig' with beer %}
+      {% include '/partials/_beer_card.html.twig' with {'beer': beer} %}
     {% endfor %}
 
 {% endblock %}

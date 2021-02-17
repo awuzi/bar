@@ -97,7 +97,9 @@ class BarController extends AbstractController
         $beerRepo = $this
             ->getDoctrine()
             ->getRepository(Beer::class);
-        $countryRepo = $this->getDoctrine()->getRepository(Country::class);
+        $countryRepo = $this
+            ->getDoctrine()
+            ->getRepository(Country::class);
 
         $beerInCountry = $beerRepo->findBy(['country' => $id]);
         $country = $countryRepo->find($id);

@@ -4,7 +4,7 @@
 
 {% block body %}
 
-  <h2>Les bières pour la categorie : {{ category.name | title }}</h2>
+  <h2 class="mt-4">Les bières pour la categorie : {{ category.name | title }}</h2>
   {% for beer in beersInCategory %}
     {% include '/partials/_beer_card.html.twig' with {'beer': beer} %}
   {% endfor %}

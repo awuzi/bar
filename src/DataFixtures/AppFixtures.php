@@ -75,22 +75,20 @@ class AppFixtures extends Fixture
         $count = 0;
         $repoCountry = $manager->getRepository(Country::class);
         $repoCategory = $manager->getRepository(Category::class);
-        $categories = $repoCategory->findAll();
+        $specialCategories = $repoCategory->findBy(['term' => 'special']);
+        $normalCategories = $repoCategory->findBy(['term' => 'normal']);
+
         while ($count < 30) {
             $beer = new Beer();
             // associer un pays une fois sur deux à une bière
+            $name = $countries[rand(0, count($countries) - 1)];
+            $country = $repoCountry->findOneBy(['name' => $name,]);
 
-                $name = $countries[rand(0, count($countries) - 1)];
-                $country = $repoCountry->findOneBy([
-                    'name' => $name,
-                ]);
-
-
-                $beer->addCategory($categories[random_int(0, count($categories) - 1)]);
-                $beer->addCategory($categories[random_int(0, count($categories) - 1)]);
-                // ajout d'un country
-                $beer->setCountry($country);
-
+            $beer->addCategory($normalCategories[random_int(0, count($normalCategories) - 1)]);
+            $beer->addCategory($normalCategories[random_int(0, count($normalCategories) - 1)]);
+            $beer->addCategory($specialCategories[random_int(0, count($specialCategories) - 1)]);
+            // ajout d'un country
+            $beer->setCountry($country);
 
             $beer->setName($names[random_int(0, count($names) - 1)]);
             $beer->setDescription($this->lorem(random_int(5, 20)));
@@ -101,8 +99,6 @@ class AppFixtures extends Fixture
 
 
             $beer->setPrice(rand(40, 200) / 10);
-
-
             $beer->setDegree(rand(40, 90) / 10);
             $beer->setPublishedAt($date);
 

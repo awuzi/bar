@@ -7,19 +7,7 @@
   <h1>{{ title }}</h1>
 
   {% for beer in beers %}
-    <div class="card mt-5">
-      <div class="card-body">
-        <h5 class="card-title">
-          <a href="{{ path('beer', { 'id' : beer.id }) }}">{{ beer.name | capitalize }}</a> - {{ beer.degree }}°C
-          <span class="float-right badge rounded-pill bg-info text-dark">{{ beer.price | format_currency('EUR', locale='fr') }}</span>
-        </h5>
-        {% for c in beer.categories %}
-          <p class="card-text"><em>{{ c.name }}</em></p>
-        {% endfor %}
-        <p class="card-text">{{ beer.description }}</p>
-      </div>
-      <span class="card-footer">Le : {{ beer.publishedAt| date('d/m/Y') }}</span>
-    </div>
+    {% include '/partials/_beer_card.html.twig' with {'beer': beer} %}
   {% endfor %}
 
 {% endblock %}
