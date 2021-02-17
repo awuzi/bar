@@ -7,7 +7,7 @@
   <h4 class="mt-4 mb-3">Statistiques récentes ({{ nb_client }} clients)</h4>
   {% for stat in stats %}
     <p class="text">
-      Le client {{ stat.client.name }} à acheté {{ stat.client.numberBeer }} bière(s) le {{ random(+'now'|date('U'))|date('d-m-Y') }}.
+      Le client {{ stat.client.name }} a acheté {{ stat.client.numberBeer }} bière(s) le {{ random(+'now'|date('U'))|date('d-m-Y') }}.
     </p>
   {% endfor %}
 {% endblock %}
