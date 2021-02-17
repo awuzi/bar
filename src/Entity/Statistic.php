@@ -22,6 +22,16 @@ class Statistic
      */
     private $score;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="statistics")
+     */
+    private $client;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Beer::class, inversedBy="statistics")
+     */
+    private $beer;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +45,30 @@ class Statistic
     public function setScore(int $score): self
     {
         $this->score = $score;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    public function getBeer(): ?Beer
+    {
+        return $this->beer;
+    }
+
+    public function setBeer(?Beer $beer): self
+    {
+        $this->beer = $beer;
 
         return $this;
     }
