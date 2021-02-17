@@ -1,20 +1,26 @@
-{% set route_name = app.request.attributes.get('_route') %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">The Simple Bar/beers</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link {{ route_name == 'home' ? 'active' }}" href="{{ path('home') }}">Home</a>
-            </li>
-            {% for c in categories %}
-                <a class="nav-link {{ route_name == c.name ? 'active' }}" href="{{ path('category', {id: c.id}) }}">{{ c.name | title }}</a>
-            {% endfor %}
-            <li class="nav-item">
-                <a class="nav-link {{ route_name == 'mentions' ? 'active' }}" href="{{ path('mentions') }}">Mentions</a>
-            </li>
-        </ul>
-    </div>
+  <a class="navbar-brand" href="{{ path('beers') }}">The Simple Bar/beers</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link {{ routeName == 'home' ? 'active': '' }}" href="{{ path('home') }}">Home</a>
+      </li>
+      {% for c in categories %}
+        <li class="nav-item">
+          <a class="nav-link {{ category_id == c.id ? 'active': '' }}" href="{{ path('category', {id: c.id}) }}">
+            {{ c.name | title }}
+          </a>
+        </li>
+      {% endfor %}
+      <li class="nav-item">
+        <a class="nav-link {{ routeName == 'stats' ? 'active': '' }}" href="{{ path('stats') }}">Stats</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ routeName == 'mentions' ? 'active': '' }}" href="{{ path('mentions') }}">Mentions</a>
+      </li>
+    </ul>
+  </div>
 </nav>

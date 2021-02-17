@@ -1,7 +1,8 @@
 
 <h1 align="center">TP d'initiation au framework Symfony</h1>
+<h2 align="center"> <img src="https://travis-ci.com/awuzi/bar.svg?branch=master"></h2>
 <p align="center">
- Symfony5 - PHP - Twig - Bootsrap - SCSS
+ Symfony5 - PHP - Twig - Bootstrap - SCSS
 </p>
 
 ## Groupe 23:
