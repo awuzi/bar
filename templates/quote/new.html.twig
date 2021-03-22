@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un quote{% endblock %}
+
+{% block body %}
+
+  <div class="mt-4">
+    {{ form_start(quote_form) }}
+    <div class="">
+      {{ form_label(quote_form.title, 'Titre : ') }}
+
+      {{ form_widget(quote_form.title) }}
+
+      {{ form_label(quote_form.content, 'Contenu : ') }}
+
+
+      {{ form_widget(quote_form.content) }}
+    </div>
+    {{ form_end(quote_form) }}
+  </div>
+{% endblock %}
+
