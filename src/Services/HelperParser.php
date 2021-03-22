@@ -16,8 +16,13 @@ class HelperParser
         $this->parser = $parser;
     }
 
-    public function parseToHtml(): void
+    public function parseToHtml(array $markdowns): array
     {
+        $translate = [];
+        foreach ($markdowns as $markdown) {
+            $translate[] = $this->parser->parse($markdown);
+        }
 
+        return $translate;
     }
 }

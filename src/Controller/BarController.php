@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use App\Repository\BeerRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\QuoteRepository;
 use App\Services\Hello;
+use App\Services\HelperParser;
+use App\Services\QuoteService;
 use cebe\markdown\Markdown;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -91,27 +94,16 @@ class BarController extends AbstractController
         ]);
     }
 
-
     /**
-     * @Route("/showService", name="showService")
-     * @param Hello $hello
-     * @param Markdown $parser
+     * @Route("/quotes", name="quotes")
+     * @param QuoteService $quote
      * @return Response
      */
-    public function showService(Hello $hello, Markdown $parser)
+    public function quote(QuoteService $quote): Response
     {
-
-        $markdown = [
-            'post' => <<<EOT
-# Recette nouvelle bière
-* Pommes
-* Poires
-    * Sous élément avec au moins quatre espaces devant.
-EOT];
-
-        return $this->render('showService/index.html.twig', [
-            'title' => 'Show service',
-            'markdown' => $parser->parse($markdown['post']),
+        return $this->render('quote/index.html.twig', [
+            'title' => 'Quote Service',
+            'quotes' => $quote->getQuotes(),
         ]);
     }
 }
