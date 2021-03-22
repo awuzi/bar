@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    app_hello_message: '%env(APP_BAR_MESSAGE)%'
+    app_hello_content: '%env(APP_BAR_MESSAGE_CONTENT)%'
 
 services:
     # default configuration for services in *this* file
@@ -25,7 +27,14 @@ services:
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
         resource: '../src/Controller/'
-        tags: ['controller.service_arguments']
+        tags: [ 'controller.service_arguments' ]
 
+    App\Services\Hello:
+        arguments:
+            -   message: "%app_hello_message%"
+            -   content: "%app_hello_content%"
+
+    # la dépendance vendor est maintenant intégrer dans le conteneur de service
+    cebe\markdown\Markdown: ~
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

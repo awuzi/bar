@@ -7,10 +7,12 @@
         "php": ">=7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "composer/package-versions-deprecated": "1.11.99.1",
+        "cebe/markdown": "^1.2",
+        "composer"/package-versions-deprecated": "1.11.99.1",
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.8",
+        "phpunit/phpunit": "^9.5",
         "sensio/framework-extra-bundle": "^6.0",
         "symfony/asset": "5.2.*",
         "symfony/console": "5.2.*",
@@ -29,7 +31,8 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "fzaninotto/faker": "^1.5",
-        "symfony/maker-bundle": "^1.29"
+        "symfony/maker-bundle": "^1.29",
+        "symfony/phpunit-bridge": "^5.2"
     },
     "config": {
         "optimize-autoloader": true,
