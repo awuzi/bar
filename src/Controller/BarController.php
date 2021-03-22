@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Repository\BeerRepository;
 use App\Repository\CategoryRepository;
+use App\Services\Hello;
+use cebe\markdown\Markdown;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -84,7 +86,31 @@ class BarController extends AbstractController
         return $this->render('partials/menu.html.twig', [
             'categories' => $categories,
             'routeName' => $routeName,
-            'category_id' => $category_id
+            'category_id' => $category_id,
+        ]);
+    }
+
+
+    /**
+     * @Route("/showService", name="showService")
+     * @param Hello $hello
+     * @param Markdown $parser
+     * @return Response
+     */
+    public function showService(Hello $hello, Markdown $parser)
+    {
+
+        $markdown = [
+            'post' => <<<EOT
+# Recette nouvelle bière
+* Pommes
+* Poires
+    * Sous élément avec au moins quatre espaces devant.
+EOT];
+
+        return $this->render('showService/index.html.twig', [
+            'title' => 'Show service',
+            'markdown' => $parser->parse($markdown['post']),
         ]);
     }
 }
