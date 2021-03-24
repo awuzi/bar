@@ -10,20 +10,24 @@ use cebe\markdown\Markdown;
 class QuoteService
 {
 
-    private $parser;
-    private $quoteRepository;
+    private Markdown $parser;
+    private QuoteRepository $quoteRepository;
 
     public function __construct(
         QuoteRepository $quoteRepository,
         Markdown $parser
     ) {
+        $this->parser = $parser;
         $this->quoteRepository = $quoteRepository;
         $this->parser = $parser;
     }
 
     public function getQuotes(): array
     {
-        $quotes = $this->quoteRepository->findAll();
+        $quotes = [
+            ...$this->quoteRepository->findBy(['position' => 'important']),
+            ...$this->quoteRepository->findBy(['position' => 'none'])
+        ];
 
         $parsedQuotes = [];
 
@@ -31,6 +35,8 @@ class QuoteService
             $parsedQuotes[] = [
                 'title' => $quote->getTitle(),
                 'content' => $this->parser->parse($quote->getContent()),
+                'position' => $quote->getPosition(),
+                'created_at' => $quote->getCreatedAt(),
             ];
         }
 

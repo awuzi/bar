@@ -19,7 +19,11 @@ class QuoteFixtures extends Fixture
 
         for ($i = 0; $i < 10; $i++) {
             $quote = new Quote();
-            $quote->setTitle($faker->catchPhrase)->setContent($faker->markdown);
+            $quote
+                ->setTitle($faker->catchPhrase)
+                ->setContent($faker->markdown)
+                ->setCreatedAt($faker->dateTime)
+                ->setPosition(array('important', 'none')[array_rand(['important', 'none'])]);
 
             $manager->persist($quote);
         }

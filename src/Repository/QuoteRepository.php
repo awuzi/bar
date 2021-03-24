@@ -47,4 +47,16 @@ class QuoteRepository extends ServiceEntityRepository
         ;
     }
     */
+
+     /**
+      * @return Quote[] Returns an array of Quote objects
+      */
+    public function findAndSort(): array
+    {
+        return $this->createQueryBuilder('q')
+            ->orderBy('q.position', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
 }

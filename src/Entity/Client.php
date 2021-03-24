@@ -17,27 +17,27 @@ class Client
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private ?string $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $email;
+    private ?string $email;
 
     /**
      * @ORM\OneToMany(targetEntity=Statistic::class, mappedBy="client")
      */
-    private $statistics;
+    private ArrayCollection $statistics;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $number_beer;
+    private ?int $number_beer;
 
     public function __construct()
     {

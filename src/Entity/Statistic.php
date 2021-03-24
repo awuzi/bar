@@ -15,22 +15,22 @@ class Statistic
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $score;
+    private ?int $score;
 
     /**
      * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="statistics")
      */
-    private $client;
+    private ?Client $client;
 
     /**
      * @ORM\ManyToOne(targetEntity=Beer::class, inversedBy="statistics")
      */
-    private $beer;
+    private ?Beer $beer;
 
     public function getId(): ?int
     {

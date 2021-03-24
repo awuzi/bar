@@ -93,19 +93,6 @@ class BarController extends AbstractController
             'category_id' => $category_id,
         ]);
     }
-
-    /**
-     * @Route("/quotes", name="quotes")
-     * @param QuoteService $quote
-     * @return Response
-     */
-    public function quote(QuoteService $quote): Response
-    {
-        return $this->render('quote/index.html.twig', [
-            'title' => 'Quote Service',
-            'quotes' => $quote->getQuotes(),
-        ]);
-    }
 }
 
 

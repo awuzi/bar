@@ -5,8 +5,7 @@ namespace App\Controller;
 use App\Entity\Quote;
 
 use App\Form\QuoteType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use App\Services\QuoteService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +16,20 @@ class QuoteController extends AbstractController
 {
 
     /**
-     * @Route("/new", name="quote_new", methods={"GET","POST"})
+     * @Route("/quotes", name="quotes")
+     * @param QuoteService $quote
+     * @return Response
+     */
+    public function quote(QuoteService $quote): Response
+    {
+        return $this->render('quote/index.html.twig', [
+            'title' => 'Quote Service',
+            'quotes' => $quote->getQuotes(),
+        ]);
+    }
+
+    /**
+     * @Route("/new-quote", name="quote_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
      */
@@ -31,6 +43,8 @@ class QuoteController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($quote);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Added');
 
             return $this->redirectToRoute('quotes');
         }

@@ -17,17 +17,17 @@ class Category
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $name;
+    private ?string $name;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $description;
+    private ?string $description;
 
     /**
      * @ORM\ManyToMany(targetEntity=Beer::class, mappedBy="categories")
@@ -37,7 +37,7 @@ class Category
     /**
      * @ORM\Column(type="string", length=100, options={"default": "normal"})
      */
-    private $term;
+    private ?string $term;
 
     public function __construct()
     {

@@ -17,47 +17,47 @@ class Beer
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $name;
+    private ?string $name;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $description;
+    private ?string $description;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $published_at;
+    private ?\DateTimeInterface $published_at;
 
     /**
      * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="beers")
      */
-    private $country;
+    private ?Country $country;
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="beers")
      */
-    private $categories;
+    private ArrayCollection $categories;
 
     /**
      * @ORM\Column(type="decimal", precision=5, scale=2, nullable=true)
      */
-    private $price;
+    private ?string $price;
 
     /**
      * @ORM\Column(type="decimal", precision=5, scale=2)
      */
-    private $degree;
+    private ?string $degree;
 
     /**
      * @ORM\OneToMany(targetEntity=Statistic::class, mappedBy="beer")
      */
-    private $statistics;
+    private ArrayCollection $statistics;
 
     public function __construct()
     {

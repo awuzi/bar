@@ -5,16 +5,15 @@
 {% block body %}
 
   <div class="mt-4">
-    {{ form_start(quote_form) }}
+    {{ form_start(quote_form, {'attr': {'novalidate': 'novalidate'}}) }}
     <div class="">
       {{ form_label(quote_form.title, 'Titre : ') }}
-
       {{ form_widget(quote_form.title) }}
 
       {{ form_label(quote_form.content, 'Contenu : ') }}
-
-
       {{ form_widget(quote_form.content) }}
+
+      {{ form_widget(quote_form.position) }}
     </div>
     {{ form_end(quote_form) }}
   </div>

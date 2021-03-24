@@ -8,10 +8,16 @@
     <div class="mt-4">
       <div class="card">
         <div class="h5 card-header align-content-center justify-content-center flex">
-          <h4>{{ quote['title'] }}</h4>
+          {{ quote['title'] }}
+          {% if quote['position'] == 'important' %}
+            <span class="float-right badge rounded-pill bg-info text-light">{{ quote['position'] }}</span>
+          {% else %}
+            <span class="float-right badge rounded-pill bg-secondary text-light">{{ quote['position'] }}</span>
+          {% endif %}
         </div>
-        <div class="card-body">
-          {{ quote['content'] | raw }}
+        <div class="card-body">{{ quote['content'] | raw }}</div>
+        <div class="card-footer">
+          <span class="float-right small">Release on : {{ quote['created_at'] | date('d/m/Y') }}</span>
         </div>
       </div>
     </div>
