@@ -26,13 +26,14 @@ class QuoteService
     {
         $quotes = [
             ...$this->quoteRepository->findBy(['position' => 'important']),
-            ...$this->quoteRepository->findBy(['position' => 'none'])
+            ...$this->quoteRepository->findBy(['position' => 'none']),
         ];
 
         $parsedQuotes = [];
 
         foreach ($quotes as $quote) {
             $parsedQuotes[] = [
+                'id' => $quote->getId(),
                 'title' => $quote->getTitle(),
                 'content' => $this->parser->parse($quote->getContent()),
                 'position' => $quote->getPosition(),

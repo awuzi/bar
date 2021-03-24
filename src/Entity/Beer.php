@@ -42,7 +42,7 @@ class Beer
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="beers")
      */
-    private ArrayCollection $categories;
+    private $categories;
 
     /**
      * @ORM\Column(type="decimal", precision=5, scale=2, nullable=true)
@@ -57,7 +57,7 @@ class Beer
     /**
      * @ORM\OneToMany(targetEntity=Statistic::class, mappedBy="beer")
      */
-    private ArrayCollection $statistics;
+    private $statistics;
 
     public function __construct()
     {

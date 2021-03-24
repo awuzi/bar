@@ -15,6 +15,13 @@ class Quote
     const PRIORITY_NONE = 'none';
     const PRIORITY_IMPORTANT = 'important';
 
+
+    public function __construct()
+    {
+        $this->setPosition(self::PRIORITY_IMPORTANT);
+        $this->setCreatedAt(new \DateTime('now'));
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

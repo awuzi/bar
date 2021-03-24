@@ -4,11 +4,6 @@ namespace App\Controller;
 
 use App\Repository\BeerRepository;
 use App\Repository\CategoryRepository;
-use App\Repository\QuoteRepository;
-use App\Services\Hello;
-use App\Services\HelperParser;
-use App\Services\QuoteService;
-use cebe\markdown\Markdown;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

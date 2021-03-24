@@ -8,17 +8,21 @@
     <div class="mt-4">
       <div class="card">
         <div class="h5 card-header align-content-center justify-content-center flex">
-          {{ quote['title'] }}
-          {% if quote['position'] == 'important' %}
-            <span class="float-right badge rounded-pill bg-info text-light">{{ quote['position'] }}</span>
+          {{ quote.title }} <a href="{{ path('quote_edit', {'id': quote.id}) }}" class="btn btn-sm btn-info rounded-circle">✏</a>
+          {% if quote.position == 'important' %}
+            <span class="float-right badge rounded-pill bg-info text-light">{{ quote.position }}</span>
           {% else %}
-            <span class="float-right badge rounded-pill bg-secondary text-light">{{ quote['position'] }}</span>
+            <span class="float-right badge rounded-pill bg-secondary text-light">{{ quote.position }}</span>
           {% endif %}
         </div>
-        <div class="card-body">{{ quote['content'] | raw }}</div>
+        <div class="card-body">{{ quote.content | raw }}</div>
         <div class="card-footer">
-          <span class="float-right small">Release on : {{ quote['created_at'] | date('d/m/Y') }}</span>
+          <span class="float-right small">Release on : {{ quote.created_at | date('d/m/Y') }}</span>
         </div>
+        <form method="post" action="{{ path('quote_delete', {'id': quote.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?')">
+          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ quote.id) }}">
+          <button class="btn-danger btn-sm">🚮</button>
+        </form>
       </div>
     </div>
   {% endfor %}
