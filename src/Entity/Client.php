@@ -32,7 +32,7 @@ class Client
     /**
      * @ORM\OneToMany(targetEntity=Statistic::class, mappedBy="client")
      */
-    private ArrayCollection $statistics;
+    private $statistics;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
